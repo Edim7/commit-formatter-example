@@ -1,0 +1,24 @@
+#!/bin/sh
+
+temp_commit_file=$1
+commit_msg=$(cat "$temp_commit_file")
+
+commit_type_pattern="^(feature|fix|refactor|wip): .*$"
+commit_length_pattern="^.{1,50}$"
+
+# Checks the commit message length
+if ! [[ $commit_msg =~ $commit_length_pattern ]]; then
+    echo "Error: Commit message is too long and it exceeds 50 characters." >&2
+    exit 1
+# Checks for a colon in the commit message
+elif [[ $commit_msg != *:* ]]; then
+    echo "Error: Commit message must contain a colon \":\" to separate commit_type and description." >&2
+	echo "Correct commit message format should follow <type>: <description> format"
+    exit 1
+# Checks the commit type
+elif ! [[ $commit_msg =~ $commit_type_pattern ]]; then
+    echo "Error: Invalid commit type." >&2
+	echo "Valid commit_types include: feature, fix, refactor, wip)"
+	echo "Correct commit message format should follow <type>: <description> format"
+    exit 1
+fi
