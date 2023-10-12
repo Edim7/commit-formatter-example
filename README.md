@@ -1,5 +1,13 @@
 # commit-formatter-example readme
-In this repository commit messages are analyzed through commit-msg hook found in .git/hooks
+
+## Setup
+To use the funcionality from the custom git hook we defined we need to run `git config core.hooksPath .githooks` after we clone the repo
+
+Note: this only works on git version 2.9 and above, so please check your `git --version` before running this command
+
+##
+
+If the setup is successful you'll see that in this repository commit messages are analyzed through commit-msg hook found in ./hooks (usualy this would be .git/hooks)
 
 Valid commits follow a simple rule of `<type>:<description>` where type can be any of the following: `feature`, `fix`, `refactor`, `wip` and the complete commit message can't be more than 50 characters long.
 
